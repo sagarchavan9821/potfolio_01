@@ -6,10 +6,20 @@ const About = () => {
       <div className="about-me">
         <h3 className="title">About Me</h3>
         <p className="para">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic quis
-          dolores numquam iusto Ratione earum ducimus autem id iure pariatur
-          dolorum quae maiores.
+          Aspiring Machine Learning Engineer with hands-on experience in Python,
+          data analysis, and machine learning fundamentals. Familiar with
+          libraries like Pandas and Scikit-learn, and passionate about building
+          real-world AI solutions. Looking for an opportunity to contribute and
+          grow in a data-driven environment.
         </p>
+        <a
+          href="https://github.com/sagarchavan9821"
+          target="_blank"
+          className="about-github"
+          data-cursor="disable"
+        >
+          View my GitHub
+        </a>
       </div>
     </div>
   );

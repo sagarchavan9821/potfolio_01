@@ -12,6 +12,7 @@ const Work = () => {
 
   function setTranslateX() {
     const box = document.getElementsByClassName("work-box");
+    if (box.length === 0) return;
     const rectLeft = document
       .querySelector(".work-container")!
       .getBoundingClientRect().left;
@@ -24,6 +25,13 @@ const Work = () => {
 
   setTranslateX();
 
+  const handleResize = () => {
+    setTranslateX();
+    ScrollTrigger.refresh();
+  };
+
+  window.addEventListener("resize", handleResize);
+
   let timeline = gsap.timeline({
     scrollTrigger: {
       trigger: ".work-section",
@@ -31,7 +39,9 @@ const Work = () => {
       end: `+=${translateX}`, // Use actual scroll width
       scrub: true,
       pin: true,
+      pinSpacing: true,
       id: "work",
+      invalidateOnRefresh: true,
     },
   });
 
@@ -40,10 +50,13 @@ const Work = () => {
     ease: "none",
   });
 
+  ScrollTrigger.refresh();
+
   // Clean up (optional, good practice)
   return () => {
     timeline.kill();
     ScrollTrigger.getById("work")?.kill();
+    window.removeEventListener("resize", handleResize);
   };
 }, []);
   return (
@@ -53,23 +66,48 @@ const Work = () => {
           My <span>Work</span>
         </h2>
         <div className="work-flex">
-          {[...Array(6)].map((_value, index) => (
-            <div className="work-box" key={index}>
-              <div className="work-info">
-                <div className="work-title">
-                  <h3>0{index + 1}</h3>
-
-                  <div>
-                    <h4>Project Name</h4>
-                    <p>Category</p>
-                  </div>
+          <div className="work-box">
+            <div className="work-info">
+              <div className="work-title">
+                <h3>01</h3>
+                <div>
+                  <h4>Car Price Prediction</h4>
+                  <p>Machine Learning</p>
                 </div>
-                <h4>Tools and features</h4>
-                <p>Javascript, TypeScript, React, Threejs</p>
               </div>
-              <WorkImage image="/images/placeholder.webp" alt="" />
+              <h4>Tools and features</h4>
+              <p>Python, Scikit-learn, Pandas, Data Preprocessing, Feature Selection, Regression</p>
             </div>
-          ))}
+            <WorkImage image="/images/car-prediction.png" alt="Car Price Prediction Dashboard UI" />
+          </div>
+          <div className="work-box">
+            <div className="work-info">
+              <div className="work-title">
+                <h3>02</h3>
+                <div>
+                  <h4>Stock Market Analyzer</h4>
+                  <p>Data Analysis</p>
+                </div>
+              </div>
+              <h4>Tools and features</h4>
+              <p>Python, Pandas, Matplotlib, Time-Series Analysis, Data Visualization</p>
+            </div>
+            <WorkImage image="/images/stock-market.png" alt="Stock Market Analyzer Dashboard UI" />
+          </div>
+          <div className="work-box">
+            <div className="work-info">
+              <div className="work-title">
+                <h3>03</h3>
+                <div>
+                  <h4>AI Assistant</h4>
+                  <p>Python Application</p>
+                </div>
+              </div>
+              <h4>Tools and features</h4>
+              <p>Python, Speech Recognition, Task Automation, Information Retrieval</p>
+            </div>
+            <WorkImage image="/images/ai-assistant.png" alt="AI Assistant UI Design" />
+          </div>
         </div>
       </div>
     </div>
